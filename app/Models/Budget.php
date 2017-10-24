@@ -8,6 +8,11 @@ class Budget extends Model
 {
     protected $guarded = ['id', 'user_id'];
 
+    public function categoryGroups()
+    {
+        return $this->hasMany(CategoryGroup::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
