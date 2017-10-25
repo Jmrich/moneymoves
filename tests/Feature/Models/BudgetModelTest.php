@@ -28,4 +28,19 @@ class BudgetModelTest extends TestCase
             'user_id' => $user->id,
         ]);
     }
+
+    /** @test */
+    public function can_get_budget_category_totals()
+    {
+        $user = $this->createUser();
+        $budget = $this->createBudget($user);
+        $budget->categoryGroups()->where('name', 'Family')->get()
+            ->each(function ($categoryGroup) {
+                $categoryGroup->categories->each->update([
+                    'amount' => 100,
+                ]);
+            });
+
+        $this->assertEquals(300, $budget->getCategoriesTotal());
+    }
 }

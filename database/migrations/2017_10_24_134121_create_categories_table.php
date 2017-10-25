@@ -17,6 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('category_group_id');
             $table->string('name', 100);
+            $table->decimal('amount', 13, 4)->default(0.0000);
             $table->timestamps();
         });
     }

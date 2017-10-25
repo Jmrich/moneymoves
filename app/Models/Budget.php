@@ -8,6 +8,11 @@ class Budget extends Model
 {
     protected $guarded = ['id', 'user_id'];
 
+    public function categories()
+    {
+        return $this->hasManyThrough(Category::class, CategoryGroup::class);
+    }
+
     public function categoryGroups()
     {
         return $this->hasMany(CategoryGroup::class);
@@ -16,5 +21,10 @@ class Budget extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getCategoriesTotal()
+    {
+        return $this->categories->sum('amount');
     }
 }

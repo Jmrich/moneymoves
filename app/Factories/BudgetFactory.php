@@ -51,13 +51,18 @@ class BudgetFactory
                     'name' => $name
                 ]);
 
-                collect($categories)->each(function ($category) use ($categoryGroup) {
-                    $categoryGroup->categories()->create([
-                        'name' => $category
-                    ]);
-                });
+                $this->createCategories($categories, $categoryGroup);
             });
 
         return $budget;
+    }
+
+    private function createCategories(array $categories, CategoryGroup $categoryGroup): void
+    {
+        collect($categories)->each(function ($category) use ($categoryGroup) {
+            $categoryGroup->categories()->create([
+                'name' => $category
+            ]);
+        });
     }
 }

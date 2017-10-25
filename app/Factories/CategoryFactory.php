@@ -7,10 +7,8 @@ use App\Models\CategoryGroup;
 
 class CategoryFactory
 {
-    public function create(CategoryGroup $categoryGroup, string $name): Category
+    public function create(CategoryGroup $categoryGroup, array $attributes): Category
     {
-        return $categoryGroup->categories()->create([
-            'name' => $name,
-        ]);
+        return $categoryGroup->categories()->create($attributes);
     }
 }

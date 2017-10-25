@@ -17,4 +17,9 @@ class CategoryGroup extends Model
     {
         return $this->hasMany(Category::class);
     }
+
+    public function categoriesTotal()
+    {
+        return $this->categories->sum('amount');
+    }
 }

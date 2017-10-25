@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Factories;
 
+use App\Factories\CategoryFactory;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
@@ -15,8 +16,9 @@ class CategoryFactoryTest extends TestCase
         $user = $this->createUser();
         $budget = $this->createBudget($user);
         $categoryGroup = $budget->categoryGroups()->first();
-        $categoryGroup->categories()->create([
+        (new CategoryFactory)->create($categoryGroup, [
             'name' => 'Groceries',
+            'amount' => 100
         ]);
 
         $this->assertDatabaseHas('categories', [
