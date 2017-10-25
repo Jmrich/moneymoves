@@ -8,17 +8,13 @@ class CategoryGroup extends Model
 {
     protected $guarded = ['id'];
 
-    public const DEFAULT_CATEGORY_GROUPS = [
-        'Family',
-        'Savings',
-        'Debt Payments',
-        'Entertainment',
-        'Home Entertainment',
-        'Investment',
-    ];
-
     public function budget()
     {
         return $this->belongsTo(Budget::class);
+    }
+
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
     }
 }
