@@ -8,11 +8,6 @@ class CategoryGroup extends Model
 {
     protected $guarded = ['id'];
 
-    public function budget()
-    {
-        return $this->belongsTo(Budget::class);
-    }
-
     public function categories()
     {
         return $this->hasMany(Category::class);

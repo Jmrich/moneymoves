@@ -10,7 +10,7 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
 
-    protected function createUser(array $attributes = [])
+    protected function createUser(array $attributes = []): User
     {
         return factory(User::class)->create($attributes);
     }
